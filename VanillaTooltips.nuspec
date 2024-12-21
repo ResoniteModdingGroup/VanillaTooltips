@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>VanillaTooltips</id>
+    <version>1.0.0</version>
+    
+    <title>Vanilla Tooltips</title>
+    <authors>Banane9, Nytra</authors>
+    
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    
+    <projectUrl>https://github.com/ResoniteModdingGroup/VanillaTooltips</projectUrl>
+    <repository type="git" url="https://github.com/ResoniteModdingGroup/VanillaTooltips.git" commit="$commit$" />
+    
+    <readme>README.md</readme>
+    
+    <description>This MonkeyLoader mod for Resonite adds Tooltip label data for the vanilla UI.</description>
+    <tags>mod mods modding mod loader monkeyloader resonite help tooltip tooltips button buttons tip tips</tags>
+  </metadata>
+  
+  <files>
+    <file src="README.md" target="README.md" />
+    <file src="Locale\*.json" target="content\Locale" />
+  </files>
+</package>

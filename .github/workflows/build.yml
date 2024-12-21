@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Build
+
+# Trigger the action on push to master
+on:
+  workflow_call: {}  # Allow reusing this workflow
+  push:
+    branches:
+      - master       # Run for pushes to master
+  pull_request:
+    branches:
+      - '*'          # Run the workflow for all pull requests
+  
+# Sets permissions of the GITHUB_TOKEN to allow reading packages
+permissions:
+  packages: read
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NuGetDirectory: ${{ github.workspace}}/nuget
+
+defaults:
+  run:
+    shell: pwsh
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "ci"
+  cancel-in-progress: false
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    # Setup environment
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+      with:
+        nuget-version: 'latest'
+    
+    - name: Create NuGet Package
+      run: nuget pack -OutputFileNamesWithoutVersion -Properties "commit=$GITHUB_SHA"
+      
+    # Publish the NuGet package(s) as an artifact, so they can be used in the following jobs
+    - name: Upload NuGet Packages Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: NuGet Packages
+        if-no-files-found: error
+        retention-days: 7
+        path: ./*.nupkg
+        
+  Validate-NuGet:
+    runs-on: ubuntu-latest
+    needs: [ Build ]
+    steps:
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.x
+    
+    - name: Install NuGet Validator
+      run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
+          
+    - name: Download NuGet Packages Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: NuGet Packages
+        path: ${{ env.NuGetDirectory }}
+
+    # Validate metadata and content of the NuGet package
+    # https://www.nuget.org/packages/Meziantou.Framework.NuGetPackageValidation.Tool#readme-body-tab
+    # If some rules are not applicable, you can disable them
+    # using the --excluded-rules or --excluded-rule-ids option
+    - name: Validate Package(s)
+      run: meziantou.validate-nuget-package (Get-ChildItem -Recurse "${{ env.NuGetDirectory }}" -Include *.nupkg) --excluded-rules IconMustBeSet 
