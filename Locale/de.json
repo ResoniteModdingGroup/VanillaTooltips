@@ -1,0 +1,28 @@
+{
+  "localeCode": "de",
+  "authors": [ "Banane9", "DeadDr4gon" ],
+  "messages": {
+    "Tooltip.Slot.ResetPosition": "Setzt die lokale Position auf [0; 0; 0] zurück.",
+    "Tooltip.Slot.ResetRotation": "Setzt die lokale Rotation auf [0; 0; 0] zurück.",
+    "Tooltip.Slot.ResetScale": "Setzt die lokale Größe auf [1; 1; 1] zurück.",
+    "Tooltip.Slot.ParentUnderWorldRoot": "Weist den ausgewählten Slot dem World Root zu und behält die globale Transformation bei.",
+    "Tooltip.Slot.ParentUnderLocalUserSpace": "Weist den ausgewählten Slot einem Parent deines User Slots zu und behält die globale Transformation bei.",
+    "Tooltip.Slot.OnCreatePivotAtCenter": "Erstellt ein neues Parent über dem ausgewählten Slot, positioniert in der Mitte des Begrenzungsrahmens des ausgewählten Slots.",
+    "Tooltip.Slot.JumpTo": "Teleportiert dich zur globalen Position des ausgewählten Slots.",
+    "Tooltip.Slot.BringTo": "Positioniert den ausgewählten Slot vor dir. Kann rückgängig gemacht werden.",
+
+    "Tooltip.SceneInspector.OnDestroyPressed": "Zerstört ein Asset ohne Aufbewahrung. Kann rückgängig gemacht werden.",
+    "Tooltip.SceneInspector.OnDestroyPreservingAssetsPressed": "Zerstört ein Asset mit Aufbewahrung. Kann rückgängig gemacht werden.",
+    "Tooltip.SceneInspector.OnAddChildPressed": "Erstellt ein neues Child unter dem ausgewählten Slot. Kann rückgängig gemacht werden.",
+    "Tooltip.SceneInspector.OnSetRootPressed": "Setzt die Root-Ansicht des Inspektors auf den ausgewählten Slot.",
+    "Tooltip.SceneInspector.OnInsertParentPressed": "Erstellt ein neues Parent über dem ausgewählten Slot und kopiert die Transformation. Danach wird die Transformation des ausgewählten Slots zurückgesetzt. Kann rückgängig gemacht werden.",
+    "Tooltip.SceneInspector.OnObjectRootPressed": "Setzt die Root-Ansicht des Inspektors auf das Objekt-Root des ausgewählten Slots.",
+    "Tooltip.SceneInspector.OnRootUpPressed": "Setzt die Root-Ansicht des Inspektors auf das Parent des ausgewählten Slots.",
+    "Tooltip.SceneInspector.OnDuplicatePressed": "Dupliziert den ausgewählten Slot. Kann rückgängig gemacht werden.",
+
+    "Tooltip.FileBrowser.CreateNew": "Erstellt einen neuen Ordner oder exportiert ein gehaltenes Item.",
+    "Tooltip.FileBrowser.RunImport": "Importiert den ausgewählten Ordner oder die ausgewählte Datei.",
+    "Tooltip.FileBrowser.RunRawImport": "Importiert die ausgewählte Datei als Raw-Datei.",
+    "Tooltip.FileBrowser.Reload": "Lädt den aktuellen Ordner erneut."
+  }
+}
